@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../modelos/movel.dart';
+// import '../modelos/movel.dart';
 
 class Detalhes extends StatelessWidget {
-  final Movel movel;
+  final movel;
 
-  Detalhes({Key key, @required this.movel}) : super(key: key);
+  Detalhes(this.movel) : super();
 
   @override
   Widget build(BuildContext context) {

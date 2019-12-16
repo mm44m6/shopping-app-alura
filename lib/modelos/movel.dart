@@ -9,9 +9,6 @@ class Movel {
   Movel({this.titulo, this.preco, this.foto, this.descricao});
 
   factory Movel.fromJson(Map<String, dynamic> json) {
-    if (json == null)
-      return null;
-
     return Movel(
       titulo: json['titulo'] as String,
       preco: json['preco'] as String,
