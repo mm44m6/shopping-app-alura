@@ -30,8 +30,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: materialColorBackground,
           textTheme: TextTheme(
             headline: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, fontFamily: 'Alata'),
-            title: TextStyle(fontSize: 20.0, fontFamily: 'Alata', color: Colors.white),
+            title: TextStyle(fontSize: 20.0, fontFamily: 'Alata'),
             body1: TextStyle(fontSize: 14.0, fontFamily: 'Open Sans', color: Color.fromRGBO(83, 83, 83, 1)),
+            body2: TextStyle(fontSize: 14.0, fontFamily: 'Open Sans', color: Color.fromRGBO(83, 83, 83, 1))
           ),
         ),
         home: MyHomePage('Shopping App'),
@@ -50,43 +51,43 @@ class MyHomePage extends StatelessWidget {
         "titulo": "Mesa",
         "preco": "300",
         "foto": "furniture1.jpeg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Cadeira",
         "preco": "120",
         "foto": "furniture2.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Manta",
         "preco": "200",
         "foto": "furniture3.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Sofá Cinza",
         "preco": "800",
         "foto": "furniture4.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Criado Mudo",
         "preco": "400",
         "foto": "furniture5.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Jogo de Cama",
         "preco": "250",
         "foto": "furniture6.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Sofá Branco",
         "preco": "900",
         "foto": "furniture7.jpg",
-        "descricao": ""
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     }
   ];
 
