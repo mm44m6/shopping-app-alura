@@ -1,33 +1,66 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'dart:collection';
 
-class Movel {
-  String titulo;
-  String preco;
-  String foto;
-  String descricao;
+class CarrinhoModel extends ChangeNotifier {
+  final List _moveisCarrinho = [];
+  int _precoTotal = 0;
 
-  Movel({this.titulo, this.preco, this.foto, this.descricao});
+  int get precoTotal => _precoTotal;
+  int get tamanhoListaCarrinho => _moveisCarrinho.length;
 
-  factory Movel.fromJson(Map<String, dynamic> json) {
-    return Movel(
-      titulo: json['titulo'] as String,
-      preco: json['preco'] as String,
-      foto: json['foto'] as String,
-      descricao: json['descricao'] as String
-    );
+  UnmodifiableListView get moveisCarrinho => UnmodifiableListView(_moveisCarrinho);
+
+  void adicionarMovel(movel) {
+    Map _movelCarrinho = {
+      'movel': movel,
+      'qtd': 1
+    };
+
+    int indexMovel =  _moveisCarrinho.indexWhere((item) => item['movel'] == movel);
+
+    if(indexMovel >= 0) {
+      print( _moveisCarrinho[indexMovel]);
+      _moveisCarrinho[indexMovel]['qtd'] = _moveisCarrinho[indexMovel]['qtd'] + 1;
+    } else {
+      _moveisCarrinho.add(_movelCarrinho);
+    }
+
+    _calcularPrecoTotal();
+
+    notifyListeners();
   }
 
-  List<dynamic> parseMovel(String jsonStr) {
-    final parsed = json.decode(jsonStr);
-    return parsed;
+  void aumentarQuantidade(movel) {
+    movel['qtd'] = movel['qtd'] + 1;
+    _calcularPrecoTotal();
+    notifyListeners();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['titulo'] = this.titulo;
-    data['preco'] = this.preco;
-    data['foto'] = this.foto;
-    data['descricao'] = this.descricao;
-    return data;
+  void diminuirQuantidade(movel) {
+    if (movel['qtd'] > 1) movel['qtd'] = movel['qtd'] - 1;
+
+    _calcularPrecoTotal();
+    notifyListeners();
   }
+
+  void removerMovel(movel) {
+    _moveisCarrinho.remove(movel);
+
+    _calcularPrecoTotal();
+    notifyListeners();
+  }
+
+  void _calcularPrecoTotal() {
+    List preco1 = [];
+    if (tamanhoListaCarrinho > 0) {
+      for(var i = 0; i < tamanhoListaCarrinho; i++) {
+        preco1.add(_moveisCarrinho[i]['qtd'] * _moveisCarrinho[i]['movel']['preco']);
+      }
+    
+    _precoTotal = preco1.reduce((a,b) {return a + b;});
+    } 
+    else _precoTotal = 0;
+    notifyListeners();
+  }
+  
 }

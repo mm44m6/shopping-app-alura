@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import '../modelos/movel.dart';
+import '../common/appbar.dart';
 
 class Detalhes extends StatelessWidget {
   final movel;
@@ -15,36 +18,7 @@ class Detalhes extends StatelessWidget {
         ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          titleSpacing: 0.0,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          iconTheme: IconThemeData(
-              color: Colors.black, //change your color here
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
-              ),
-              child: Container(
-                padding: EdgeInsets.only(right: 30, left: 20),
-                height: 40,
-                alignment: Alignment.centerRight,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(100),
-                    topLeft: Radius.circular(100)),
-                    color: Colors.white,
-                ),
-                child: Image(
-                  image: AssetImage('utils/assets/icons/shopping_bag.png'),
-                  height: 30,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-         ]),
+        appBar: AppBarCustomizada(titulo: '', ehPaginaCarrinho: false),
         body: 
         Align(
           alignment: Alignment.bottomLeft,
@@ -79,7 +53,7 @@ class Detalhes extends StatelessWidget {
                                 elevation: 5.0,
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(100.0),
-                                  onTap: () => print("here"),
+                                  onTap: () => Provider.of<CarrinhoModel>(context).adicionarMovel(movel),
                                   child: Container(
                                     padding: EdgeInsets.only(top: 16, bottom: 16, left: 20, right: 20),
                                     decoration: BoxDecoration(

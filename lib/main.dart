@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'common/appbar.dart';
+import 'modelos/movel.dart';
 import 'paginas/detalhes.dart';
+import 'paginas/carrinho.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+  ChangeNotifierProvider(
+      create: (context) => CarrinhoModel(),
+      child: MyApp(),
+  )
+);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -24,68 +33,66 @@ class MyApp extends StatelessWidget {
     MaterialColor materialColorBackground =
       MaterialColor(0xFFededed, colorBackground);
       return MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => MyHomePage('Shopping App'),
+          '/carrinho': (context) => Carrinho(),
+       },
         title: 'Shopping App',
         theme: ThemeData(
           primarySwatch: Colors.red,
           backgroundColor: materialColorBackground,
-          textTheme: TextTheme(
-            headline: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, fontFamily: 'Alata'),
-            title: TextStyle(fontSize: 20.0, fontFamily: 'Alata'),
-            body1: TextStyle(fontSize: 14.0, fontFamily: 'Open Sans', color: Color.fromRGBO(83, 83, 83, 1)),
-            body2: TextStyle(fontSize: 14.0, fontFamily: 'Open Sans', color: Color.fromRGBO(83, 83, 83, 1))
-          ),
         ),
-        home: MyHomePage('Shopping App'),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
 
-  MyHomePage(this.title) : super();
+  MyHomePage(this.titulo) : super();
 
-  final String title;
+  final String titulo;
 
-  List moveis = [
+  final List moveis = [
     {
         "titulo": "Mesa",
-        "preco": "300",
+        "preco": 300,
         "foto": "furniture1.jpeg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Cadeira",
-        "preco": "120",
+        "preco": 120,
         "foto": "furniture2.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Manta",
-        "preco": "200",
+        "preco": 200,
         "foto": "furniture3.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Sofá Cinza",
-        "preco": "800",
+        "preco": 800,
         "foto": "furniture4.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Criado Mudo",
-        "preco": "400",
+        "preco": 400,
         "foto": "furniture5.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Jogo de Cama",
-        "preco": "250",
+        "preco": 250,
         "foto": "furniture6.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         "titulo": "Sofá Branco",
-        "preco": "900",
+        "preco": 900,
         "foto": "furniture7.jpg",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam libero id mauris mollis convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     }
@@ -93,42 +100,10 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    criarAppBar() {
-      return AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        titleSpacing: 0.0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8.0,
-            ),
-            child: Container(
-              padding: EdgeInsets.only(right: 30, left: 20),
-              height: 40,
-              alignment: Alignment.centerRight,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                  topLeft: Radius.circular(100)),
-                  color: Colors.white,
-                ),
-              child: Image(
-                image: AssetImage('utils/assets/icons/shopping_bag.png'),
-                height: 30,
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-          ),
-        ],
-        title: Text(title, style: Theme.of(context).textTheme.headline)
-      );
-    }
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: criarAppBar(),
+      appBar: AppBarCustomizada(titulo: titulo, ehPaginaCarrinho: false),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -139,7 +114,7 @@ class MyHomePage extends StatelessWidget {
                 child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
               )
             ),
-            Text("Produtos", style: Theme.of(context).textTheme.body1),
+            Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
             Expanded(
                 child: new Container(
               margin: const EdgeInsets.only(left: 20.0, right: 30.0),
@@ -210,7 +185,7 @@ class MyHomePage extends StatelessWidget {
                               child: Text(
                                 movel['titulo'],
                                 style: 
-                                Theme.of(context).textTheme.title
+                                TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16)
                               )
                             )
                           ])
