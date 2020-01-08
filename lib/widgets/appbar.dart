@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../modelos/movel.dart';
+import '../modelos/carrinho.dart';
 
 class AppBarCustomizada extends StatelessWidget with PreferredSizeWidget {
 

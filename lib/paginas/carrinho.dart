@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_alura/common/appbar.dart';
-import '../modelos/movel.dart';
-
 import 'package:provider/provider.dart';
+
+import 'package:shopping_app_alura/widgets/appbar.dart';
+import '../modelos/carrinho.dart';
 
 class Carrinho extends StatelessWidget {
 

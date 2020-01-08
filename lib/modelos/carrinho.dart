@@ -7,7 +7,6 @@ class CarrinhoModel extends ChangeNotifier {
 
   int get precoTotal => _precoTotal;
   int get tamanhoListaCarrinho => _moveisCarrinho.length;
-
   UnmodifiableListView get moveisCarrinho => UnmodifiableListView(_moveisCarrinho);
 
   void adicionarMovel(movel) {
@@ -26,12 +25,12 @@ class CarrinhoModel extends ChangeNotifier {
     }
 
     _calcularPrecoTotal();
-
     notifyListeners();
   }
 
   void aumentarQuantidade(movel) {
     movel['qtd'] = movel['qtd'] + 1;
+
     _calcularPrecoTotal();
     notifyListeners();
   }
@@ -51,14 +50,13 @@ class CarrinhoModel extends ChangeNotifier {
   }
 
   void _calcularPrecoTotal() {
-    List preco1 = [];
+    List precosIndividuais = [];
+
     if (tamanhoListaCarrinho > 0) {
-      for(var i = 0; i < tamanhoListaCarrinho; i++) {
-        preco1.add(_moveisCarrinho[i]['qtd'] * _moveisCarrinho[i]['movel']['preco']);
-      }
-    
-    _precoTotal = preco1.reduce((a,b) {return a + b;});
-    } 
+      _moveisCarrinho.forEach((movel) => precosIndividuais.add(movel['qtd'] * movel['movel']['preco']));
+      _precoTotal = precosIndividuais.reduce((precoA, precoB) {return precoA + precoB;});
+    }
+
     else _precoTotal = 0;
     notifyListeners();
   }
