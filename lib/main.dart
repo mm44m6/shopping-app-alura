@@ -35,21 +35,20 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => MyHomePage('Shopping App'),
+          '/': (context) => Home('Shopping App'),
           '/carrinho': (context) => Carrinho(),
        },
         title: 'Shopping App',
         theme: ThemeData(
-          primarySwatch: Colors.red,
           backgroundColor: materialColorBackground,
         ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class Home extends StatelessWidget {
 
-  MyHomePage(this.titulo) : super();
+  Home(this.titulo) : super();
 
   final String titulo;
 
@@ -107,96 +106,113 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(children: <Widget>[
-            Expanded(
-              child: new Container(
-                margin: const EdgeInsets.only(left: 30.0, right: 20.0),
-                child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
-              )
-            ),
-            Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
-            Expanded(
-                child: new Container(
-              margin: const EdgeInsets.only(left: 20.0, right: 30.0),
-              child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
-            )),
-          ]),
+          _construirSeparador(),
           Flexible(
-            child: 
-              GridView.builder(
-                gridDelegate: 
-                  SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2
-                  ),
-                itemCount: this.moveis == null ? 0 : moveis.length,
-                itemBuilder: (BuildContext context, int index) {
-                
-                final movel = moveis[index];
-
-                return InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detalhes(movel))),
-                  child: Container(
-                    decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14),
-                    color: Colors.white,
-                    boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(178, 155, 178, 0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 0)
-                        )
-                      ]
-                    ),
-                    margin: index % 2 == 0
-                      ? EdgeInsets.only(
-                        left: 25, top: 10, right: 10, bottom: 10)
-                      : EdgeInsets.only(
-                        left: 10, top: 10, right: 25, bottom: 10),
-                    child: 
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(14),
-                          child: Stack(
-                           alignment: Alignment.center,
-                           children: <Widget>[
-                            Positioned.fill(
-                             child: Image(
-                                image: AssetImage(
-                                  'utils/assets/images/${movel['foto']}'),
-                                  fit: BoxFit.cover
-                              )
-                            ),
-                            Positioned.fill(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.transparent,
-                                        Color.fromRGBO(178, 155, 178, 0.8)
-                                      ],
-                                  ),
-                                )
-                              )
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              child: Text(
-                                movel['titulo'],
-                                style: 
-                                TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16)
-                              )
-                            )
-                          ])
-                      )
-                    )
-                  );
-                },
-              )
+            child: _construirGridProdutos(),
           )
         ],
       ),
     );
   }
+
+  _construirGridProdutos() {
+    return GridView.builder(
+      gridDelegate: 
+        SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2
+        ),
+        itemCount: this.moveis == null ? 0 : moveis.length,
+        itemBuilder: (BuildContext context, int index) {
+                
+        final movel = moveis[index];
+
+        return InkWell(
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detalhes(movel))),
+            child: Container(
+              decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(178, 155, 178, 0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 0)
+                  )
+                ]
+              ),
+              margin: index % 2 == 0
+                ? EdgeInsets.only(
+                  left: 25, top: 10, right: 10, bottom: 10)
+                : EdgeInsets.only(
+                  left: 10, top: 10, right: 25, bottom: 10),
+              child: 
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                    child: Stack(
+                      alignment: Alignment.center,
+                        children: <Widget>[
+                          _construirImagemGridProdutos('utils/assets/images/${movel['foto']}'),
+                          _construirDegradeGridProdutos(),
+                          _construirTextoGridProdutos(movel['titulo'])
+                          ])
+                      )
+                    )
+                  );
+                },
+              );
+  }
+
+  _construirImagemGridProdutos(imagem) {
+    return Positioned.fill(
+      child: Image(
+        image: AssetImage(imagem),
+        fit: BoxFit.cover
+      )
+    );
+  }
+
+  _construirDegradeGridProdutos() {
+    return Positioned.fill(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.transparent,
+              Color.fromRGBO(178, 155, 178, 0.8)
+            ],
+          ),
+        )
+      )
+    );
+  }
+
+  _construirTextoGridProdutos(texto) {
+    return Positioned(
+      bottom: 10,
+      child: Text(texto, style: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16))
+    );
+  }
+
+  _construirSeparador() {
+    return Row(children: <Widget>[
+      Expanded(
+        child: Container(
+          margin: EdgeInsets.only(left: 30.0, right: 20.0),
+          child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+        )
+      ),
+      Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.only(left: 20.0, right: 30.0),
+            child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+          )
+        ),
+      ]
+    );
+  }
+
 }

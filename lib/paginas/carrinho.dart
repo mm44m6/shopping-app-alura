@@ -27,7 +27,6 @@ class Carrinho extends StatelessWidget {
                 ),
               ],),
             ),
-            
           ]
         ),
       body: Consumer<CarrinhoModel>(
