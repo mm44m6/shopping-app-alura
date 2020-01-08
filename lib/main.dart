@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'common/appbar.dart';
+import 'widgets/appbar.dart';
 import 'modelos/movel.dart';
 import 'paginas/detalhes.dart';
 import 'paginas/carrinho.dart';
