@@ -107,9 +107,12 @@ class Home extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           _construirSeparador(),
-          Flexible(
-            child: _construirGridProdutos(),
-          )
+          this.moveis.length > 0 ? 
+            Flexible(child: _construirGridProdutos()) : 
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Text('Nenhum produto para ser exibido')
+            )
         ],
       ),
     );
@@ -121,7 +124,7 @@ class Home extends StatelessWidget {
         SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2
         ),
-        itemCount: this.moveis == null ? 0 : moveis.length,
+        itemCount: moveis.length,
         itemBuilder: (BuildContext context, int index) {
                 
         final movel = moveis[index];
