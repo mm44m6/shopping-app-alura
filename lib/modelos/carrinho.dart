@@ -50,7 +50,7 @@ class CarrinhoModel extends ChangeNotifier {
   }
 
   void _calcularPrecoTotal() {
-    List precosIndividuais = [];
+    List<int> precosIndividuais = [];
 
     if (tamanhoListaCarrinho > 0) {
       _moveisCarrinho.forEach((movel) => precosIndividuais.add(movel['qtd'] * movel['movel']['preco']));

@@ -20,15 +20,16 @@ class Carrinho extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
 
                   Map movelCarrinho = carrinho.moveisCarrinho[index];
+                  Map movel = carrinho.moveisCarrinho[index]['mivel'];
 
                   return Container(
                     margin: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
                     child: 
                     Stack(children: <Widget>[
                       _construirCardCarrinho(
-                        'utils/assets/images/${movelCarrinho['movel']['foto']}', 
+                        'utils/assets/images/${movel['foto']}', 
                         movelCarrinho['movel']['titulo'],
-                        '${movelCarrinho['movel']['preco']} reais',
+                        '${movel['preco']} reais',
                         '${movelCarrinho['qtd']}',
                         () => carrinho.aumentarQuantidade(movelCarrinho),
                         () => carrinho.diminuirQuantidade(movelCarrinho)

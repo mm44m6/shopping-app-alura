@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => Home('Shopping App'),
+          '/': (context) => Inicio('Shopping App'),
           '/carrinho': (context) => Carrinho(),
        },
         title: 'Shopping App',
@@ -46,9 +46,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Inicio extends StatelessWidget {
 
-  Home(this.titulo) : super();
+  Inicio(this.titulo) : super();
 
   final String titulo;
 
