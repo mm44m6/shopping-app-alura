@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'widgets/appbar.dart';
-import 'modelos/carrinho.dart';
-import 'paginas/detalhes.dart';
-import 'paginas/carrinho.dart';
+import 'package:shopping_app_alura/widgets/gridProdutos.dart';
+import 'package:shopping_app_alura/widgets/appbar.dart';
+import 'package:shopping_app_alura/modelos/carrinho.dart';
+import 'package:shopping_app_alura/paginas/carrinho.dart';
 
 void main() => runApp(
   ChangeNotifierProvider(
@@ -105,117 +104,31 @@ class Inicio extends StatelessWidget {
       appBar: AppBarCustomizada(titulo: titulo, ehPaginaCarrinho: false),
       body: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          _construirSeparador(),
-          this.moveis.length > 0 ? 
-            Flexible(child: _construirGridProdutos()) : 
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              child: Text('Nenhum produto para ser exibido')
-            )
+        children: <Widget> [
+          Row(children: <Widget>[
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 30.0, right: 20.0),
+                child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+              )
+            ),
+            Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 20.0, right: 30.0),
+                child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+              )
+            ),
+          ]
+        ),
+        this.moveis.length > 0 ? 
+          Flexible(child: GridProdutos(moveis)) : 
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            child: Text('Nenhum produto para ser exibido')
+          )
         ],
       ),
     );
   }
-
-  _construirGridProdutos() {
-    return GridView.builder(
-      gridDelegate: 
-        SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2
-        ),
-        itemCount: moveis.length,
-        itemBuilder: (BuildContext context, int index) {
-                
-        final movel = moveis[index];
-
-        return InkWell(
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detalhes(movel))),
-            child: Container(
-              decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
-              color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(178, 155, 178, 0.2),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 0)
-                  )
-                ]
-              ),
-              margin: index % 2 == 0
-                ? EdgeInsets.only(
-                  left: 25, top: 10, right: 10, bottom: 10)
-                : EdgeInsets.only(
-                  left: 10, top: 10, right: 25, bottom: 10),
-              child: 
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(14),
-                    child: Stack(
-                      alignment: Alignment.center,
-                        children: <Widget>[
-                          _construirImagemGridProdutos('utils/assets/images/${movel['foto']}'),
-                          _construirDegradeGridProdutos(),
-                          _construirTextoGridProdutos(movel['titulo'])
-                          ])
-                      )
-                    )
-                  );
-                },
-              );
-  }
-
-  _construirImagemGridProdutos(imagem) {
-    return Positioned.fill(
-      child: Image(
-        image: AssetImage(imagem),
-        fit: BoxFit.cover
-      )
-    );
-  }
-
-  _construirDegradeGridProdutos() {
-    return Positioned.fill(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.transparent,
-              Color.fromRGBO(178, 155, 178, 0.8)
-            ],
-          ),
-        )
-      )
-    );
-  }
-
-  _construirTextoGridProdutos(texto) {
-    return Positioned(
-      bottom: 10,
-      child: Text(texto, style: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16))
-    );
-  }
-
-  _construirSeparador() {
-    return Row(children: <Widget>[
-      Expanded(
-        child: Container(
-          margin: EdgeInsets.only(left: 30.0, right: 20.0),
-          child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
-        )
-      ),
-      Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.only(left: 20.0, right: 30.0),
-            child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
-          )
-        ),
-      ]
-    );
-  }
-
 }
