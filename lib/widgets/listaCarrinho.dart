@@ -36,7 +36,7 @@ class ListaCarrinho extends StatelessWidget {
     );
   }
 
-  _construirBtnRemoverMovelCarrinho(removerMovelFn) {
+  Widget _construirBtnRemoverMovelCarrinho(removerMovelFn) {
     return Positioned(
       right: 0,
       top: 16,

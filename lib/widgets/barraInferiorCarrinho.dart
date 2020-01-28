@@ -26,7 +26,7 @@ class BarraInferiorCarrinho extends StatelessWidget {
     );
   }
   
-  _construirTextoBarraInferiorCarrinho(texto) {
+  Widget _construirTextoBarraInferiorCarrinho(texto) {
     return Text(texto, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black));
   }
 

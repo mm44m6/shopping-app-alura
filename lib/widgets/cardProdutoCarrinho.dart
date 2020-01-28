@@ -24,15 +24,15 @@ class CardProdutoCarrinho extends StatelessWidget {
         )
     );
   }
-  
-  _construirColunaImagemCarrinho(imagem) {
+
+  Widget _construirColunaImagemCarrinho(imagem) {
     return Expanded( 
       flex: 2,
       child: Image(image: AssetImage(imagem), height: 92, fit: BoxFit.fill)
     );
   }
 
-  _construirColunaInfosCarrinho(titulo, precoIndividual, qtd, aumentarQtdFn, diminuirQtdFn) {
+  Widget _construirColunaInfosCarrinho(titulo, precoIndividual, qtd, aumentarQtdFn, diminuirQtdFn) {
     return Expanded(
       flex: 3,
       child: 
@@ -56,15 +56,15 @@ class CardProdutoCarrinho extends StatelessWidget {
       );
   }
 
-  _construirTituloMovelCarrinho(titulo) {
+  Widget _construirTituloMovelCarrinho(titulo) {
     return Text(titulo, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black));
   }
 
-  _construirPrecoIndividualCarrinho(precoIndividual) {
+  Widget _construirPrecoIndividualCarrinho(precoIndividual) {
     return Text(precoIndividual, style: TextStyle(fontSize: 14, color: Colors.black));
   }
 
-  _construirLinhaQuantidadeCarrinho(qtd, aumentarQtdFn, diminuirQtdFn) {
+  Widget _construirLinhaQuantidadeCarrinho(qtd, aumentarQtdFn, diminuirQtdFn) {
     return Row(
       children: [
         _construirBtnsLinhaQuantidadeCarrinho(aumentarQtdFn, Icons.add),
@@ -74,7 +74,7 @@ class CardProdutoCarrinho extends StatelessWidget {
     );
   }
 
-  _construirBtnsLinhaQuantidadeCarrinho(fn, icone) {
+  Widget _construirBtnsLinhaQuantidadeCarrinho(fn, icone) {
     return GestureDetector(
       onTap: fn,
       child: Container(
