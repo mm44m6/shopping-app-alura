@@ -34,11 +34,7 @@ class GridProdutos extends StatelessWidget {
                   )
                 ]
               ),
-              margin: index % 2 == 0
-                ? EdgeInsets.only(
-                  left: 25, top: 10, right: 10, bottom: 10)
-                : EdgeInsets.only(
-                  left: 10, top: 10, right: 25, bottom: 10),
+              margin: _calcularMarginElemento(index),
               child: 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
@@ -56,7 +52,7 @@ class GridProdutos extends StatelessWidget {
               );
   }
 
-  _construirImagemGridProdutos(imagem) {
+  Widget _construirImagemGridProdutos(imagem) {
     return Positioned.fill(
       child: Image(
         image: AssetImage(imagem),
@@ -65,7 +61,7 @@ class GridProdutos extends StatelessWidget {
     );
   }
 
-  _construirDegradeGridProdutos() {
+  Widget _construirDegradeGridProdutos() {
     return Positioned.fill(
       child: Container(
         decoration: BoxDecoration(
@@ -82,11 +78,15 @@ class GridProdutos extends StatelessWidget {
     );
   }
 
-  _construirTextoGridProdutos(texto) {
+  Widget _construirTextoGridProdutos(texto) {
     return Positioned(
       bottom: 10,
       child: Text(texto, style: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16))
     );
   }
 
+  EdgeInsetsGeometry _calcularMarginElemento(index) {
+    if(index % 2 == 0)  return EdgeInsets.only(left: 25, top: 10, right: 10, bottom: 10);
+    return EdgeInsets.only(left: 10, top: 10, right: 25, bottom: 10);
+  }
 }

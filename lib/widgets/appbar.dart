@@ -23,7 +23,13 @@ AppBarCustomizada({this.titulo, this.ehPaginaCarrinho}): super();
         color: Colors.black, //change your color here
       ),
       actions: <Widget>[
-        this.ehPaginaCarrinho ? Container() : BtnCarrinho(context)],
+          _mudarBotaoCarrinho(ehPaginaCarrinho, context)
+        ],
       );
+    }
+
+    Widget _mudarBotaoCarrinho(bool ehPaginaCarrinho, contexto) {
+      if (ehPaginaCarrinho) return BtnCarrinho(contexto);
+      return Container();
     }
   }
