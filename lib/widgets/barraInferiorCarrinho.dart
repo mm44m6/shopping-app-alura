@@ -16,7 +16,7 @@ class BarraInferiorCarrinho extends StatelessWidget {
               _construirTextoBarraInferiorCarrinho('Total'),
               Consumer<CarrinhoModel>(
                 builder: (context, carrinho, child) {
-                  return _construirPrecoTotalCarrinho('${carrinho.precoTotal} reais');
+                  return _construirTextoBarraInferiorCarrinho('${carrinho.precoTotal} reais');
                 }
               ),
             ],
@@ -28,10 +28,6 @@ class BarraInferiorCarrinho extends StatelessWidget {
   
   _construirTextoBarraInferiorCarrinho(texto) {
     return Text(texto, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black));
-  }
-
-  _construirPrecoTotalCarrinho(precoTotal) {
-    return Text(precoTotal, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black));
   }
 
 }
