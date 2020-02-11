@@ -5,11 +5,17 @@ class CardProdutoCarrinho extends StatelessWidget {
   final String imagemProduto;
   final String titulo;
   final String precoIndividual;
-  final String qtd;
-  final Function aumentarQtdFn;
-  final Function diminuirQtdFn;
+  final String quantidade;
+  final Function funcaoAumentarQuantidade;
+  final Function funcaoDiminuirQuantidade;
 
-  CardProdutoCarrinho(this.imagemProduto, this.titulo, this.precoIndividual, this.qtd, this.aumentarQtdFn, this.diminuirQtdFn) : super();
+  CardProdutoCarrinho({this.imagemProduto, 
+    this.titulo, 
+    this.precoIndividual, 
+    this.quantidade, 
+    this.funcaoAumentarQuantidade, 
+    this.funcaoDiminuirQuantidade}
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +25,25 @@ class CardProdutoCarrinho extends StatelessWidget {
         Row(
           children: <Widget>[
             _construirColunaImagemCarrinho(this.imagemProduto),
-            _construirColunaInfosCarrinho(titulo, precoIndividual, qtd, aumentarQtdFn, diminuirQtdFn)
+            _construirColunaInfosCarrinho(titulo, precoIndividual, quantidade, funcaoAumentarQuantidade, funcaoDiminuirQuantidade)
           ],
         )
     );
   }
 
-  Widget _construirColunaImagemCarrinho(imagem) {
+  Widget _construirColunaImagemCarrinho(String imagem) {
     return Expanded( 
       flex: 2,
       child: Image(image: AssetImage(imagem), height: 92, fit: BoxFit.fill)
     );
   }
 
-  Widget _construirColunaInfosCarrinho(titulo, precoIndividual, qtd, aumentarQtdFn, diminuirQtdFn) {
+  Widget _construirColunaInfosCarrinho(
+      String titulo,
+      String precoIndividual,
+      String quantidade,
+      Function funcaoAumentarQuantidade,
+      Function funcaoDiminuirQuantidade) {
     return Expanded(
       flex: 3,
       child: 
@@ -47,7 +58,7 @@ class CardProdutoCarrinho extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _construirPrecoIndividualCarrinho(precoIndividual),
-                  _construirLinhaQuantidadeCarrinho(qtd, aumentarQtdFn, diminuirQtdFn)
+                  _construirLinhaQuantidadeCarrinho(quantidade, funcaoAumentarQuantidade, funcaoDiminuirQuantidade)
                 ]
               )
             ]
@@ -56,25 +67,25 @@ class CardProdutoCarrinho extends StatelessWidget {
       );
   }
 
-  Widget _construirTituloMovelCarrinho(titulo) {
+  Widget _construirTituloMovelCarrinho(String titulo) {
     return Text(titulo, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black));
   }
 
-  Widget _construirPrecoIndividualCarrinho(precoIndividual) {
+  Widget _construirPrecoIndividualCarrinho(String precoIndividual) {
     return Text(precoIndividual, style: TextStyle(fontSize: 14, color: Colors.black));
   }
 
-  Widget _construirLinhaQuantidadeCarrinho(qtd, aumentarQtdFn, diminuirQtdFn) {
+  Widget _construirLinhaQuantidadeCarrinho(String quantidade, Function funcaoAumentarQuantidade, Function funcaoDiminuirQuantidade) {
     return Row(
       children: [
-        _construirBtnsLinhaQuantidadeCarrinho(aumentarQtdFn, Icons.add),
-        Text(qtd, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
-        _construirBtnsLinhaQuantidadeCarrinho(diminuirQtdFn, Icons.remove)
+        _construirBotoesLinhaQuantidadeCarrinho(funcaoAumentarQuantidade, Icons.add),
+        Text(quantidade, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
+        _construirBotoesLinhaQuantidadeCarrinho(funcaoDiminuirQuantidade, Icons.remove)
       ]
     );
   }
 
-  Widget _construirBtnsLinhaQuantidadeCarrinho(fn, icone) {
+  Widget _construirBotoesLinhaQuantidadeCarrinho(fn, icone) {
     return GestureDetector(
       onTap: fn,
       child: Container(

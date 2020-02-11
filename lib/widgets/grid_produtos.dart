@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_alura/paginas/detalhes.dart';
-import 'package:shopping_app_alura/widgets/elementoGridProdutos.dart';
+import 'package:shopping_app_alura/widgets/elemento_grid_produtos.dart';
 
 class GridProdutos extends StatelessWidget {
 
   final moveis;
 
-  GridProdutos(this.moveis) : super();
+  GridProdutos({this.moveis});
   
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class GridProdutos extends StatelessWidget {
                 
           final movel = moveis[index];
 
-          return ElementoGridProdutos(movel, index);
+          return ElementoGridProdutos(movel: movel, index: index);
 
         }
       );

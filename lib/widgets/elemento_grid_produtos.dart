@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+
+import '../tema.dart';
 import 'package:shopping_app_alura/paginas/detalhes.dart';
 
 class ElementoGridProdutos extends StatelessWidget {
 
   final movel;
-  int index;
+  final int index;
 
-  ElementoGridProdutos(this.movel, this.index) : super();
+  ElementoGridProdutos({this.movel, this.index});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detalhes(movel))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detalhes(movel: movel))),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Color.fromRGBO(178, 155, 178, 0.2),
+                color: Tema().corDeDetalhes.shade100,
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: Offset(0, 0)
@@ -41,7 +43,7 @@ class ElementoGridProdutos extends StatelessWidget {
                   );
                 }
 
-  Widget _construirImagemElementoGridProdutos(imagem) {
+  Widget _construirImagemElementoGridProdutos(String imagem) {
     return Positioned.fill(
       child: Image(
         image: AssetImage(imagem),
@@ -59,7 +61,7 @@ class ElementoGridProdutos extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.transparent,
-              Color.fromRGBO(178, 155, 178, 0.8)
+              Tema().corDeDetalhes.shade800
             ],
           ),
         )
@@ -67,14 +69,14 @@ class ElementoGridProdutos extends StatelessWidget {
     );
   }
 
-  Widget _construirTextoElementoGridProdutos(texto) {
+  Widget _construirTextoElementoGridProdutos(String texto) {
     return Positioned(
       bottom: 10,
       child: Text(texto, style: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16))
     );
   }
 
-  EdgeInsetsGeometry _calcularMarginElemento(index) {
+  EdgeInsetsGeometry _calcularMarginElemento(int index) {
     if(index % 2 == 0)  return EdgeInsets.only(left: 25, top: 10, right: 10, bottom: 10);
     return EdgeInsets.only(left: 10, top: 10, right: 25, bottom: 10);
   }

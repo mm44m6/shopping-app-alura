@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../tema.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 
 class CardDetalhes extends StatelessWidget {
 
   final movel;
-  final contexto;
+  final BuildContext contexto;
 
-  CardDetalhes(this.contexto, this.movel): super();
+  CardDetalhes({this.contexto, this.movel});
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +35,27 @@ class CardDetalhes extends StatelessWidget {
     );
   }
 
-  _construirTituloDetalhes(titulo) {
+  _construirTituloDetalhes(String titulo) {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
       child: Text(titulo, style: TextStyle(fontSize: 20.0, fontFamily: 'Alata', fontWeight: FontWeight.bold, color: Colors.black))
     );
   }
 
-  _construirDescricaoDetalhes(descricao) {
+  _construirDescricaoDetalhes(String descricao) {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-      child: Text(descricao, style: TextStyle(fontSize: 12.0, fontFamily: 'Open Sans', color: Color.fromRGBO(83, 83, 83, 1))),
-    );
+      child: Text(descricao, style: TextStyle(fontSize: 12.0, fontFamily: 'Open Sans', color: Tema().corDescricaoProdutos))
+      );
   }
 
-  _construirPrecoDetalhes(preco) {
+  _construirPrecoDetalhes(String preco) {
     return Text(preco, style: TextStyle(fontSize: 20.0, fontFamily: 'Open Sans', fontWeight: FontWeight.bold, color: Colors.black));
   }
 
-  _construirBotaoComprarDetalhes(contexto) {
+  _construirBotaoComprarDetalhes(BuildContext contexto) {
     return Material(
-      color: Color.fromRGBO(178, 155, 178, 0.8),
+      color: Tema().corDeDetalhes.shade800,
       shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(60.0)),
       elevation: 5.0,

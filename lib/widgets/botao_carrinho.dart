@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../tema.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 
-class BtnCarrinho extends StatelessWidget {
+class BotaoCarrinho extends StatelessWidget {
 
-  final contexto;
+  final BuildContext contexto;
 
-  BtnCarrinho(this.contexto) : super();
+  BotaoCarrinho({this.contexto});
   
   @override
   Widget build(BuildContext context) {
-    return _construirBotaoCarrinhoAppBar(contexto);
-  }
-
-  _construirBotaoCarrinhoAppBar(contexto) {
        return GestureDetector(
          onTap: () {
            Navigator.pushNamed(contexto, '/carrinho');
@@ -61,14 +59,14 @@ class BtnCarrinho extends StatelessWidget {
            width: 10,
            height: 10,
            decoration: BoxDecoration(
-             color: Color.fromRGBO(178, 155, 178, 1),
+             color: Tema().corDeDetalhes,
              shape: BoxShape.circle
            ),
          )
        );
      }
 
-     _construirImagemBotaoCarrinhoAppBar(imagem) {
+     _construirImagemBotaoCarrinhoAppBar(String imagem) {
        return Image(
          image: AssetImage(imagem),
          height: 30,

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+
+import '../tema.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
-import 'package:shopping_app_alura/widgets/cardProdutoCarrinho.dart';
+import 'package:shopping_app_alura/widgets/card_produto_carrinho.dart';
 
 class ListaCarrinho extends StatelessWidget {
 
   final CarrinhoModel carrinho;
 
-  ListaCarrinho(this.carrinho) : super();
+  ListaCarrinho({this.carrinho});
 
   @override
   Widget build(BuildContext context) {
@@ -15,37 +17,37 @@ class ListaCarrinho extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
 
       Map movelCarrinho = carrinho.moveisCarrinho[index];
-      Map movel = carrinho.moveisCarrinho[index]['mivel'];
+      Map movel = carrinho.moveisCarrinho[index]['movel'];
 
       return Container(
         margin: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
         child: 
           Stack(children: <Widget>[
             CardProdutoCarrinho(
-              'utils/assets/images/${movel['foto']}', 
-              movelCarrinho['movel']['titulo'],
-              '${movel['preco']} reais',
-              '${movelCarrinho['qtd']}',
-              () => carrinho.aumentarQuantidade(movelCarrinho),
-              () => carrinho.diminuirQuantidade(movelCarrinho)
+              imagemProduto: 'utils/assets/images/${movel['foto']}', 
+              titulo: movelCarrinho['movel']['titulo'],
+              precoIndividual: '${movel['preco']} reais',
+              quantidade: '${movelCarrinho['quantidade']}',
+              funcaoAumentarQuantidade: () => carrinho.aumentarQuantidade(movelCarrinho),
+              funcaoDiminuirQuantidade: () => carrinho.diminuirQuantidade(movelCarrinho)
             ),
-            _construirBtnRemoverMovelCarrinho(() => carrinho.removerMovel(movelCarrinho))
+            _construirBotaoRemoverMovelCarrinho(() => carrinho.removerMovel(movelCarrinho))
           ]
         )
       );}
     );
   }
 
-  Widget _construirBtnRemoverMovelCarrinho(removerMovelFn) {
+  Widget _construirBotaoRemoverMovelCarrinho(Function funcaoRemoverMovel) {
     return Positioned(
       right: 0,
       top: 16,
       child: GestureDetector(
-        onTap: removerMovelFn,
+        onTap: funcaoRemoverMovel,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),  
-            color:Color.fromRGBO(178, 155, 178, 1)
+            color: Tema().corDeDetalhes
           ),
           width: 20,
           height: 20,

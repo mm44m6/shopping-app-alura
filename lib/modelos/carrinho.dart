@@ -12,14 +12,14 @@ class CarrinhoModel extends ChangeNotifier {
   void adicionarMovel(movel) {
     Map _movelCarrinho = {
       'movel': movel,
-      'qtd': 1
+      'quantidade': 1
     };
 
     int indexMovel =  _moveisCarrinho.indexWhere((item) => item['movel'] == movel);
 
     if(indexMovel >= 0) {
       print( _moveisCarrinho[indexMovel]);
-      _moveisCarrinho[indexMovel]['qtd'] = _moveisCarrinho[indexMovel]['qtd'] + 1;
+      _moveisCarrinho[indexMovel]['quantidade'] = _moveisCarrinho[indexMovel]['quantidade'] + 1;
     } else {
       _moveisCarrinho.add(_movelCarrinho);
     }
@@ -29,14 +29,14 @@ class CarrinhoModel extends ChangeNotifier {
   }
 
   void aumentarQuantidade(movel) {
-    movel['qtd'] = movel['qtd'] + 1;
+    movel['quantidade'] = movel['quantidade'] + 1;
 
     _calcularPrecoTotal();
     notifyListeners();
   }
 
   void diminuirQuantidade(movel) {
-    if (movel['qtd'] > 1) movel['qtd'] = movel['qtd'] - 1;
+    if (movel['quantidade'] > 1) movel['quantidade'] = movel['quantidade'] - 1;
 
     _calcularPrecoTotal();
     notifyListeners();
@@ -53,7 +53,7 @@ class CarrinhoModel extends ChangeNotifier {
     List<int> precosIndividuais = [];
 
     if (tamanhoListaCarrinho > 0) {
-      _moveisCarrinho.forEach((movel) => precosIndividuais.add(movel['qtd'] * movel['movel']['preco']));
+      _moveisCarrinho.forEach((movel) => precosIndividuais.add(movel['quantidade'] * movel['movel']['preco']));
       _precoTotal = precosIndividuais.reduce((precoA, precoB) {return precoA + precoB;});
     }
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_alura/widgets/btnCarrinho.dart';
+import 'package:shopping_app_alura/widgets/botao_carrinho.dart';
 
 class AppBarCustomizada extends StatelessWidget with PreferredSizeWidget {
 
 final String titulo;
 final bool ehPaginaCarrinho;
 
-AppBarCustomizada({this.titulo, this.ehPaginaCarrinho}): super();
+AppBarCustomizada({this.titulo, this.ehPaginaCarrinho});
 
 @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -28,8 +28,8 @@ AppBarCustomizada({this.titulo, this.ehPaginaCarrinho}): super();
       );
     }
 
-    Widget _mudarBotaoCarrinho(bool ehPaginaCarrinho, contexto) {
-      if (ehPaginaCarrinho) return BtnCarrinho(contexto);
+    Widget _mudarBotaoCarrinho(bool ehPaginaCarrinho, BuildContext contexto) {
+      if (!ehPaginaCarrinho) return BotaoCarrinho(contexto: contexto);
       return Container();
     }
   }

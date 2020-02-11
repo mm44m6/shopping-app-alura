@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app_alura/widgets/gridProdutos.dart';
+
+import './tema.dart';
+import 'package:shopping_app_alura/widgets/grid_produtos.dart';
 import 'package:shopping_app_alura/widgets/appbar.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 import 'package:shopping_app_alura/paginas/carrinho.dart';
@@ -13,33 +15,18 @@ void main() => runApp(
 );
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Map<int, Color> colorBackground = {
-      50: Color.fromRGBO(237, 237, 237, .1),
-      100: Color.fromRGBO(237, 237, 237, .2),
-      200: Color.fromRGBO(237, 237, 237, .3),
-      300: Color.fromRGBO(237, 237, 237, .4),
-      400: Color.fromRGBO(237, 237, 237, .5),
-      500: Color.fromRGBO(237, 237, 237, .6),
-      600: Color.fromRGBO(237, 237, 237, .7),
-      700: Color.fromRGBO(237, 237, 237, .8),
-      800: Color.fromRGBO(237, 237, 237, .9),
-      900: Color.fromRGBO(237, 237, 237, 1),
-    };
-
-    MaterialColor materialColorBackground =
-      MaterialColor(0xFFededed, colorBackground);
       return MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => Inicio('Shopping App'),
+          '/': (context) => Inicio(titulo: 'Shopping App'),
           '/carrinho': (context) => Carrinho(),
        },
         title: 'Shopping App',
         theme: ThemeData(
-          backgroundColor: materialColorBackground,
+
+          backgroundColor: Tema().corDeFundo,
         ),
     );
   }
@@ -47,7 +34,7 @@ class MyApp extends StatelessWidget {
 
 class Inicio extends StatelessWidget {
 
-  Inicio(this.titulo) : super();
+  Inicio({this.titulo}) : super();
 
   final String titulo;
 
@@ -109,26 +96,31 @@ class Inicio extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 30.0, right: 20.0),
-                child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+                child: Divider(color: Tema().corDivisor),
               )
             ),
             Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 20.0, right: 30.0),
-                child: Divider(color: Color.fromRGBO(83, 83, 83, 1)),
+                child: Divider(color: Tema().corDivisor),
               )
             ),
           ]
         ),
-        this.moveis.length > 0 ? 
-          Flexible(child: GridProdutos(moveis)) : 
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text('Nenhum produto para ser exibido')
-          )
+        _mostrarMoveis()
         ],
       ),
+    );
+  }
+
+  Widget _mostrarMoveis() {
+    if (this.moveis.length > 0) {
+      return Flexible(child: GridProdutos(moveis: moveis));
+    }
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      child: Text('Nenhum produto para ser exibido')
     );
   }
 }

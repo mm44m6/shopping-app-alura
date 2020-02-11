@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:shopping_app_alura/widgets/cardDetalhes.dart';
+import 'package:shopping_app_alura/widgets/card_detalhes.dart';
 import 'package:shopping_app_alura/widgets/appbar.dart';
 
 class Detalhes extends StatelessWidget {
   final movel;
 
-  Detalhes(this.movel) : super();
+  Detalhes({this.movel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class Detalhes extends StatelessWidget {
               height: 212,
               margin: EdgeInsets.all(16),
               child:  
-                CardDetalhes(context, movel),
+                CardDetalhes(contexto: context, movel: movel),
             )
         )
       )
