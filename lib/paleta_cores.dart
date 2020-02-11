@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class Tema {
-  static Map<int, Color> _swatchCorDeFundo = {
+class PaletaCores {
+  static Map<int, Color> _swatchCinzaClaro = {
     50: Color.fromRGBO(237, 237, 237, .1),
     100: Color.fromRGBO(237, 237, 237, .2),
     200: Color.fromRGBO(237, 237, 237, .3),
@@ -14,9 +14,9 @@ class Tema {
     800: Color.fromRGBO(237, 237, 237, .9),
     900: Color.fromRGBO(237, 237, 237, 1),
   };
-  MaterialColor corDeFundo = MaterialColor(0xFFededed, _swatchCorDeFundo);
+  MaterialColor cinzaClaro = MaterialColor(0xFFededed, _swatchCinzaClaro);
 
-  static Map<int, Color> _swatchCorDeDetalhes = {
+  static Map<int, Color> _swatchLilas = {
     50: Color.fromRGBO(178, 155, 178, .1),
     100: Color.fromRGBO(178, 155, 178, .2),
     200: Color.fromRGBO(178, 155, 178, .3),
@@ -29,8 +29,7 @@ class Tema {
     900: Color.fromRGBO(178, 155, 178, 1),
   };
 
-  MaterialColor corDeDetalhes = MaterialColor(0xFFB29BB2, _swatchCorDeDetalhes);
+  MaterialColor lilas = MaterialColor(0xFFB29BB2, _swatchLilas);
 
-  Color corDivisor = Color.fromRGBO(83, 83, 83, 1);
-  Color corDescricaoProdutos = Color.fromRGBO(83, 83, 83, 1);
+  Color cinzaEscuro = Color.fromRGBO(83, 83, 83, 1);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../tema.dart';
+import '../paleta_cores.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 
 class BotaoCarrinho extends StatelessWidget {
@@ -39,7 +39,7 @@ class BotaoCarrinho extends StatelessWidget {
                      alignment: Alignment.center,
                        children: <Widget>[
                          _construirImagemBotaoCarrinhoAppBar('utils/assets/icons/shopping_bag.png'), 
-                         _construirIndicatorBotaoCarrinhoAppBar()
+                         _construirIndicatorBotaoCarrinhoAppBar(context)
                        ]
                    );
                  }
@@ -51,7 +51,7 @@ class BotaoCarrinho extends StatelessWidget {
        );
      }
 
-     _construirIndicatorBotaoCarrinhoAppBar() {
+     _construirIndicatorBotaoCarrinhoAppBar(BuildContext contexto) {
        return Positioned(
          right: 0,
          bottom: 0,
@@ -59,7 +59,7 @@ class BotaoCarrinho extends StatelessWidget {
            width: 10,
            height: 10,
            decoration: BoxDecoration(
-             color: Tema().corDeDetalhes,
+             color: Theme.of(contexto).accentColor,
              shape: BoxShape.circle
            ),
          )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../tema.dart';
+import '../paleta_cores.dart';
 import 'package:shopping_app_alura/paginas/detalhes.dart';
 
 class ElementoGridProdutos extends StatelessWidget {
@@ -20,7 +20,7 @@ class ElementoGridProdutos extends StatelessWidget {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Tema().corDeDetalhes.shade100,
+                color: Theme.of(context).accentColor.withOpacity(0.1),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: Offset(0, 0)
@@ -35,8 +35,8 @@ class ElementoGridProdutos extends StatelessWidget {
                       alignment: Alignment.center,
                         children: <Widget>[
                           _construirImagemElementoGridProdutos('utils/assets/images/${movel['foto']}'),
-                          _construirDegradeElementoGridProdutos(),
-                          _construirTextoElementoGridProdutos(movel['titulo'])
+                          _construirDegradeElementoGridProdutos(context),
+                          _construirTextoElementoGridProdutos(movel['titulo'], context)
                           ])
                       )
                     )
@@ -52,7 +52,7 @@ class ElementoGridProdutos extends StatelessWidget {
     );
   }
 
-  Widget _construirDegradeElementoGridProdutos() {
+  Widget _construirDegradeElementoGridProdutos(BuildContext contexto) {
     return Positioned.fill(
       child: Container(
         decoration: BoxDecoration(
@@ -61,7 +61,7 @@ class ElementoGridProdutos extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.transparent,
-              Tema().corDeDetalhes.shade800
+              Theme.of(contexto).accentColor.withOpacity(0.8)
             ],
           ),
         )
@@ -69,10 +69,10 @@ class ElementoGridProdutos extends StatelessWidget {
     );
   }
 
-  Widget _construirTextoElementoGridProdutos(String texto) {
+  Widget _construirTextoElementoGridProdutos(String texto, BuildContext contexto) {
     return Positioned(
       bottom: 10,
-      child: Text(texto, style: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16))
+      child: Text(texto, style: Theme.of(contexto).textTheme.headline6)
     );
   }
 

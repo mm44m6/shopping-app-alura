@@ -25,7 +25,13 @@ class CardProdutoCarrinho extends StatelessWidget {
         Row(
           children: <Widget>[
             _construirColunaImagemCarrinho(this.imagemProduto),
-            _construirColunaInfosCarrinho(titulo, precoIndividual, quantidade, funcaoAumentarQuantidade, funcaoDiminuirQuantidade)
+            _construirColunaInfosCarrinho(titulo,
+                precoIndividual,
+                quantidade,
+                funcaoAumentarQuantidade,
+                funcaoDiminuirQuantidade,
+                context
+            )
           ],
         )
     );
@@ -43,7 +49,8 @@ class CardProdutoCarrinho extends StatelessWidget {
       String precoIndividual,
       String quantidade,
       Function funcaoAumentarQuantidade,
-      Function funcaoDiminuirQuantidade) {
+      Function funcaoDiminuirQuantidade,
+      BuildContext contexto) {
     return Expanded(
       flex: 3,
       child: 
@@ -53,12 +60,12 @@ class CardProdutoCarrinho extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _construirTituloMovelCarrinho(titulo),
+              _construirTituloMovelCarrinho(titulo, contexto),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _construirPrecoIndividualCarrinho(precoIndividual),
-                  _construirLinhaQuantidadeCarrinho(quantidade, funcaoAumentarQuantidade, funcaoDiminuirQuantidade)
+                  _construirPrecoIndividualCarrinho(precoIndividual, contexto),
+                  _construirLinhaQuantidadeCarrinho(quantidade, funcaoAumentarQuantidade, funcaoDiminuirQuantidade, contexto)
                 ]
               )
             ]
@@ -67,19 +74,24 @@ class CardProdutoCarrinho extends StatelessWidget {
       );
   }
 
-  Widget _construirTituloMovelCarrinho(String titulo) {
-    return Text(titulo, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black));
+  Widget _construirTituloMovelCarrinho(String titulo, BuildContext contexto) {
+    return Text(titulo, style: Theme.of(contexto).textTheme.headline2);
   }
 
-  Widget _construirPrecoIndividualCarrinho(String precoIndividual) {
-    return Text(precoIndividual, style: TextStyle(fontSize: 14, color: Colors.black));
+  Widget _construirPrecoIndividualCarrinho(String precoIndividual, BuildContext contexto) {
+    return Text(precoIndividual, style: Theme.of(contexto).textTheme.headline5);
   }
 
-  Widget _construirLinhaQuantidadeCarrinho(String quantidade, Function funcaoAumentarQuantidade, Function funcaoDiminuirQuantidade) {
+  Widget _construirLinhaQuantidadeCarrinho(
+      String quantidade,
+      Function funcaoAumentarQuantidade,
+      Function funcaoDiminuirQuantidade,
+      BuildContext contexto
+      ) {
     return Row(
       children: [
         _construirBotoesLinhaQuantidadeCarrinho(funcaoAumentarQuantidade, Icons.add),
-        Text(quantidade, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
+        Text(quantidade, style: Theme.of(contexto).textTheme.bodyText2),
         _construirBotoesLinhaQuantidadeCarrinho(funcaoDiminuirQuantidade, Icons.remove)
       ]
     );

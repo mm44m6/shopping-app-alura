@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../tema.dart';
+import '../paleta_cores.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 import 'package:shopping_app_alura/widgets/card_produto_carrinho.dart';
 
@@ -31,14 +31,14 @@ class ListaCarrinho extends StatelessWidget {
               funcaoAumentarQuantidade: () => carrinho.aumentarQuantidade(movelCarrinho),
               funcaoDiminuirQuantidade: () => carrinho.diminuirQuantidade(movelCarrinho)
             ),
-            _construirBotaoRemoverMovelCarrinho(() => carrinho.removerMovel(movelCarrinho))
+            _construirBotaoRemoverMovelCarrinho(() => carrinho.removerMovel(movelCarrinho), context)
           ]
         )
       );}
     );
   }
 
-  Widget _construirBotaoRemoverMovelCarrinho(Function funcaoRemoverMovel) {
+  Widget _construirBotaoRemoverMovelCarrinho(Function funcaoRemoverMovel, BuildContext contexto) {
     return Positioned(
       right: 0,
       top: 16,
@@ -47,7 +47,7 @@ class ListaCarrinho extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),  
-            color: Tema().corDeDetalhes
+            color: Theme.of(contexto).accentColor
           ),
           width: 20,
           height: 20,

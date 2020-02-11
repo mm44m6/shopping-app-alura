@@ -12,10 +12,10 @@ class BarraInferiorCarrinho extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              _construirTextoBarraInferiorCarrinho('Total'),
+              _construirTextoBarraInferiorCarrinho('Total', context),
               Consumer<CarrinhoModel>(
                 builder: (context, carrinho, child) {
-                  return _construirTextoBarraInferiorCarrinho("R\$ ${carrinho.precoTotal},00");
+                  return _construirTextoBarraInferiorCarrinho("R\$ ${carrinho.precoTotal},00", context);
                 }
               ),
             ],
@@ -23,8 +23,8 @@ class BarraInferiorCarrinho extends StatelessWidget {
     );
   }
   
-  Widget _construirTextoBarraInferiorCarrinho(String texto) {
-    return Text(texto, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black));
+  Widget _construirTextoBarraInferiorCarrinho(String texto, BuildContext contexto) {
+    return Text(texto, style: Theme.of(contexto).textTheme.bodyText1);
   }
 
 }

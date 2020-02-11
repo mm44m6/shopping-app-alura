@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './tema.dart';
+import './paleta_cores.dart';
 import 'package:shopping_app_alura/widgets/grid_produtos.dart';
 import 'package:shopping_app_alura/widgets/appbar.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
@@ -26,7 +26,20 @@ class MyApp extends StatelessWidget {
         title: 'Shopping App',
         theme: ThemeData(
 
-          backgroundColor: Tema().corDeFundo,
+          backgroundColor: PaletaCores().cinzaClaro,
+          accentColor: PaletaCores().lilas,
+
+          textTheme: TextTheme(
+            bodyText1: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+            bodyText2: TextStyle(fontSize: 12.0, fontFamily: 'Open Sans', color: PaletaCores().cinzaEscuro),
+            button: TextStyle(color: Colors.white, fontSize: 12),
+            headline1: TextStyle(fontFamily: 'Open Sans', fontSize: 16),
+            headline2: TextStyle(fontFamily: 'Open Sans', color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+            headline3: TextStyle(fontSize: 20.0, fontFamily: 'Alata', fontWeight: FontWeight.bold, color: Colors.black),
+            headline4: TextStyle(fontSize: 20.0, fontFamily: 'Open Sans', fontWeight: FontWeight.bold, color: Colors.black),
+            headline5: TextStyle(fontSize: 14, color: Colors.black),
+            headline6: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16),
+          )
         ),
     );
   }
@@ -96,14 +109,14 @@ class Inicio extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 30.0, right: 20.0),
-                child: Divider(color: Tema().corDivisor),
+                child: Divider(color: PaletaCores().cinzaEscuro),
               )
             ),
-            Text("Produtos", style: TextStyle(fontFamily: 'Open Sans')),
+            Text("Produtos", style: Theme.of(context).textTheme.headline1),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 20.0, right: 30.0),
-                child: Divider(color: Tema().corDivisor),
+                child: Divider(color: PaletaCores().cinzaEscuro),
               )
             ),
           ]
