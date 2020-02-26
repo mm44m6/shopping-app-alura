@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 
 class BarraInferiorCarrinho extends StatelessWidget {
+
+  final formatacaoReais = NumberFormat.currency(locale: 'pt_BR', symbol: "R\$");
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +19,7 @@ class BarraInferiorCarrinho extends StatelessWidget {
               _construirTextoBarraInferiorCarrinho('Total', context),
               Consumer<CarrinhoModel>(
                 builder: (context, carrinho, child) {
-                  return _construirTextoBarraInferiorCarrinho("R\$ ${carrinho.precoTotal},00", context);
+                  return _construirTextoBarraInferiorCarrinho(formatacaoReais.format(carrinho.precoTotal), context);
                 }
               ),
             ],

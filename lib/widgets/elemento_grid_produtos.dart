@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app_alura/modelos/movel.dart';
 
-import '../paleta_cores.dart';
 import 'package:shopping_app_alura/paginas/detalhes.dart';
 
 class ElementoGridProdutos extends StatelessWidget {
 
-  final movel;
+  final Movel movel;
   final int index;
 
   ElementoGridProdutos({this.movel, this.index});
@@ -34,9 +34,9 @@ class ElementoGridProdutos extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                         children: <Widget>[
-                          _construirImagemElementoGridProdutos('utils/assets/images/${movel['foto']}'),
+                          _construirImagemElementoGridProdutos('utils/assets/images/${movel.foto}'),
                           _construirDegradeElementoGridProdutos(context),
-                          _construirTextoElementoGridProdutos(movel['titulo'], context)
+                          _construirTextoElementoGridProdutos(movel.titulo, context)
                           ])
                       )
                     )

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../paleta_cores.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
+import 'package:shopping_app_alura/modelos/movel.dart';
 
 class CardDetalhes extends StatelessWidget {
 
-  final movel;
+  final Movel movel;
   final BuildContext contexto;
 
   CardDetalhes({this.contexto, this.movel});
+
+  final formatacaoReais = NumberFormat.currency(locale: 'pt_BR', symbol: "R\$");
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +20,15 @@ class CardDetalhes extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _construirTituloDetalhes(movel['titulo'], contexto),
-            _construirDescricaoDetalhes(movel['descricao'], contexto),
+            _construirTituloDetalhes(movel.titulo, contexto),
+            _construirDescricaoDetalhes(movel.descricao, contexto),
             Container(
               margin: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               child: 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    _construirPrecoDetalhes("${movel['preco']} reais", contexto),
+                    _construirPrecoDetalhes(formatacaoReais.format(movel.preco), contexto),
                      _construirBotaoComprarDetalhes(contexto)
                   ]
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../paleta_cores.dart';
 import 'package:shopping_app_alura/modelos/carrinho.dart';
 
 class BotaoCarrinho extends StatelessWidget {

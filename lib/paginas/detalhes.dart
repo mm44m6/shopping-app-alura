@@ -14,7 +14,7 @@ class Detalhes extends StatelessWidget {
       decoration: 
       BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("utils/assets/images/${movel['foto']}"), fit: BoxFit.cover)
+          image: AssetImage("utils/assets/images/${movel.foto}"), fit: BoxFit.cover)
         ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

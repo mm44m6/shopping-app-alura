@@ -29,7 +29,7 @@ AppBarCustomizada({this.titulo, this.ehPaginaCarrinho});
     }
 
     Widget _mudarBotaoCarrinho(bool ehPaginaCarrinho, BuildContext contexto) {
-      if (!ehPaginaCarrinho) return BotaoCarrinho(contexto: contexto);
-      return Container();
+      if (ehPaginaCarrinho) return Container();
+      return BotaoCarrinho(contexto: contexto);
     }
   }

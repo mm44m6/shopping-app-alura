@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app_alura/modelos/movel.dart';
 import 'package:shopping_app_alura/widgets/elemento_grid_produtos.dart';
 
 class GridProdutos extends StatelessWidget {
@@ -17,7 +18,7 @@ class GridProdutos extends StatelessWidget {
         itemCount: moveis.length,
         itemBuilder: (BuildContext context, int index) {
                 
-          final movel = moveis[index];
+          final movel = Movel.fromJson(moveis[index]);
 
           return ElementoGridProdutos(movel: movel, index: index);
 
