@@ -75,11 +75,11 @@ class CardProdutoCarrinho extends StatelessWidget {
   }
 
   Widget _construirTituloMovelCarrinho(String titulo, BuildContext contexto) {
-    return Text(titulo, style: Theme.of(contexto).textTheme.headline2);
+    return Text(titulo, style: Theme.of(contexto).textTheme.display2);
   }
 
   Widget _construirPrecoIndividualCarrinho(String precoIndividual, BuildContext contexto) {
-    return Text(precoIndividual, style: Theme.of(contexto).textTheme.headline5);
+    return Text(precoIndividual, style: Theme.of(contexto).textTheme.display3);
   }
 
   Widget _construirLinhaQuantidadeCarrinho(
@@ -91,7 +91,7 @@ class CardProdutoCarrinho extends StatelessWidget {
     return Row(
       children: [
         _construirBotoesLinhaQuantidadeCarrinho(funcaoAumentarQuantidade, Icons.add),
-        Text(quantidade, style: Theme.of(contexto).textTheme.bodyText2),
+        Text(quantidade, style: Theme.of(contexto).textTheme.body2),
         _construirBotoesLinhaQuantidadeCarrinho(funcaoDiminuirQuantidade, Icons.remove)
       ]
     );

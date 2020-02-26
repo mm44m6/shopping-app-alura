@@ -72,7 +72,7 @@ class ElementoGridProdutos extends StatelessWidget {
   Widget _construirTextoElementoGridProdutos(String texto, BuildContext contexto) {
     return Positioned(
       bottom: 10,
-      child: Text(texto, style: Theme.of(contexto).textTheme.headline6)
+      child: Text(texto, style: Theme.of(contexto).textTheme.display4)
     );
   }
 

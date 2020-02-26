@@ -28,7 +28,7 @@ class BarraInferiorCarrinho extends StatelessWidget {
   }
   
   Widget _construirTextoBarraInferiorCarrinho(String texto, BuildContext contexto) {
-    return Text(texto, style: Theme.of(contexto).textTheme.bodyText1);
+    return Text(texto, style: Theme.of(contexto).textTheme.body1);
   }
 
 }

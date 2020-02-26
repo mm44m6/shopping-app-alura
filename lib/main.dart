@@ -30,15 +30,16 @@ class MyApp extends StatelessWidget {
           accentColor: PaletaCores().lilas,
 
           textTheme: TextTheme(
-            bodyText1: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-            bodyText2: TextStyle(fontSize: 12.0, fontFamily: 'Open Sans', color: PaletaCores().cinzaEscuro),
+
+            body2: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+            body1: TextStyle(fontSize: 12.0, fontFamily: 'Open Sans', color: PaletaCores().cinzaEscuro),
             button: TextStyle(color: Colors.white, fontSize: 12),
-            headline1: TextStyle(fontFamily: 'Open Sans', fontSize: 16),
-            headline2: TextStyle(fontFamily: 'Open Sans', color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
-            headline3: TextStyle(fontSize: 20.0, fontFamily: 'Alata', fontWeight: FontWeight.bold, color: Colors.black),
-            headline4: TextStyle(fontSize: 20.0, fontFamily: 'Open Sans', fontWeight: FontWeight.bold, color: Colors.black),
-            headline5: TextStyle(fontSize: 14, color: Colors.black),
-            headline6: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16),
+            display1: TextStyle(fontFamily: 'Open Sans', fontSize: 16),
+            display2: TextStyle(fontFamily: 'Open Sans', color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+            display3: TextStyle(fontSize: 14, color: Colors.black),
+            display4: TextStyle(fontFamily: 'Alata', color: Colors.white, fontSize: 16),
+            title: TextStyle(fontSize: 20.0, fontFamily: 'Alata', fontWeight: FontWeight.bold, color: Colors.black),
+            headline: TextStyle(fontSize: 20.0, fontFamily: 'Open Sans', fontWeight: FontWeight.bold, color: Colors.black),
           )
         ),
     );
@@ -112,7 +113,7 @@ class Inicio extends StatelessWidget {
                 child: Divider(color: PaletaCores().cinzaEscuro),
               )
             ),
-            Text("Produtos", style: Theme.of(context).textTheme.headline1),
+            Text("Produtos", style: Theme.of(context).textTheme.display1),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 20.0, right: 30.0),

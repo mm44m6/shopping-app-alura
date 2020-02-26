@@ -14,7 +14,7 @@ AppBarCustomizada({this.titulo, this.ehPaginaCarrinho});
 @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(titulo, style: Theme.of(context).textTheme.headline2),
+      title: Text(titulo, style: Theme.of(context).textTheme.headline),
       titleSpacing: 0.0,
       centerTitle: true,
       backgroundColor: Colors.transparent,

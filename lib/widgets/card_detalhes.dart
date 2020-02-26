@@ -41,19 +41,19 @@ class CardDetalhes extends StatelessWidget {
   _construirTituloDetalhes(String titulo, BuildContext contexto) {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
-      child: Text(titulo, style: Theme.of(contexto).textTheme.headline3)
+      child: Text(titulo, style: Theme.of(contexto).textTheme.title)
     );
   }
 
   _construirDescricaoDetalhes(String descricao, BuildContext contexto) {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-      child: Text(descricao, style: Theme.of(contexto).textTheme.bodyText2)
+      child: Text(descricao)
       );
   }
 
   _construirPrecoDetalhes(String preco, BuildContext contexto) {
-    return Text(preco, style: Theme.of(contexto).textTheme.headline4);
+    return Text(preco, style: Theme.of(contexto).textTheme.title);
   }
 
   _construirBotaoComprarDetalhes(BuildContext contexto) {
