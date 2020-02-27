@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app_alura/modelos/item_carrinho.dart';
 
 import './paleta_cores.dart';
 import 'package:shopping_app_alura/widgets/grid_produtos.dart';
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Inicio extends StatelessWidget {
+
+  static final List<ItemCarrinho> itensCarrinho = List();
 
   Inicio({this.titulo}) : super();
 
