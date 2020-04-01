@@ -21,17 +21,12 @@ class BarraInferiorCarrinho extends StatelessWidget {
           _construirTextoBarraInferiorCarrinho(
               formatacaoReais.format(valor), context)
         ],
-//              Consumer<CarrinhoModel>(
-//                builder: (context, carrinho, child) {
-//                  return _construirTextoBarraInferiorCarrinho(formatacaoReais.format(carrinho.precoTotal), context);
-//                }
-//              ),
       ),
     );
   }
 
   Widget _construirTextoBarraInferiorCarrinho(
       String texto, BuildContext contexto) {
-    return Text(texto, style: Theme.of(contexto).textTheme.body1);
+    return Text(texto, style: Theme.of(contexto).textTheme.body2);
   }
 }

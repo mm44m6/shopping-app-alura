@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shopping_app_alura/modelos/item_carrinho.dart';
 
 import './paleta_cores.dart';
 import 'package:shopping_app_alura/widgets/grid_produtos.dart';
 import 'package:shopping_app_alura/widgets/appbar.dart';
-import 'package:shopping_app_alura/modelos/carrinho.dart';
 import 'package:shopping_app_alura/paginas/carrinho.dart';
 
 void main() => runApp(
-  ChangeNotifierProvider(
-      create: (context) => CarrinhoModel(),
-      child: MyApp(),
-  )
+  MyApp(),
 );
 
 class MyApp extends StatelessWidget {

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shopping_app_alura/main.dart';
 
 import 'package:shopping_app_alura/widgets/appbar.dart';
 import 'package:shopping_app_alura/widgets/barra_inferior_carrinho.dart';
 import 'package:shopping_app_alura/widgets/lista_carrinho.dart';
-import '../modelos/carrinho.dart';
 
 class Carrinho extends StatefulWidget {
   @override
@@ -22,20 +20,7 @@ class _CarrinhoState extends State<Carrinho> {
         appBar: AppBarCustomizada(titulo: 'Carrinho', ehPaginaCarrinho: true),
         bottomNavigationBar: BarraInferiorCarrinho(valor),
         body: _constroiTela()
-//      Consumer<CarrinhoModel>(
-//          builder: (context, carrinho, child) {
-//            if (carrinho.tamanhoListaCarrinho > 0) {
-//              return ListaCarrinho();
-//            } else {
-//            return Container(
-//              height: double.infinity,
-//              alignment: Alignment.topCenter,
-//              child: Text('Nenhum item no carrinho', textAlign: TextAlign.center,)
-//            );
-//          }
-//        }
-//      ),
-        );
+    );
   }
 
   int _calculaTotal() {

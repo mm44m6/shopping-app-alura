@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-import 'package:shopping_app_alura/modelos/carrinho.dart';
 import 'package:shopping_app_alura/modelos/item_carrinho.dart';
 import 'package:shopping_app_alura/modelos/movel.dart';
 
 import '../main.dart';
 
-class CardDetalhes extends StatelessWidget {
+class CardDetalhes extends StatefulWidget {
   final Movel movel;
   final BuildContext contexto;
+  final Function atualizaPagina;
 
-  CardDetalhes({this.contexto, this.movel});
+  CardDetalhes({this.contexto, this.movel, this.atualizaPagina});
 
+  _CardDetalhesState createState() => _CardDetalhesState();
+}
+
+class _CardDetalhesState extends State<CardDetalhes> {
   final formatacaoReais = NumberFormat.currency(locale: 'pt_BR', symbol: "R\$");
 
   @override
@@ -22,16 +25,16 @@ class CardDetalhes extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _construirTituloDetalhes(movel.titulo, contexto),
-        _construirDescricaoDetalhes(movel.descricao, contexto),
+        _construirTituloDetalhes(widget.movel.titulo, widget.contexto),
+        _construirDescricaoDetalhes(widget.movel.descricao, widget.contexto),
         Container(
           margin: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 _construirPrecoDetalhes(
-                    formatacaoReais.format(movel.preco), contexto),
-                _construirBotaoComprarDetalhes(contexto)
+                    formatacaoReais.format(widget.movel.preco), widget.contexto),
+                _construirBotaoComprarDetalhes(widget.contexto)
               ]),
         )
       ],
@@ -61,7 +64,7 @@ class CardDetalhes extends StatelessWidget {
       elevation: 5.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(100.0),
-        onTap: () => Inicio.itensCarrinho.add(ItemCarrinho(movel, 1)),
+        onTap: () => _verificarListaItemCarrinho(Inicio.itensCarrinho, ItemCarrinho(widget.movel, 1), contexto),
         child: Container(
           padding: EdgeInsets.only(top: 16, bottom: 16, left: 20, right: 20),
           decoration: BoxDecoration(
@@ -72,4 +75,20 @@ class CardDetalhes extends StatelessWidget {
       ),
     );
   }
+
+  _verificarListaItemCarrinho(List<ItemCarrinho> lista, ItemCarrinho item, BuildContext contexto) {
+    int indexMovel =  lista.indexWhere((item) => item.movel == widget.movel);
+
+    if(indexMovel >= 0) {
+      lista[indexMovel].quantidade = lista[indexMovel].quantidade + 1;
+    } else {
+      _adicionarItemCarrinho(item, contexto);
+    }
+  }
+
+  _adicionarItemCarrinho(ItemCarrinho item, BuildContext context) {
+    widget.atualizaPagina();
+    Inicio.itensCarrinho.add(ItemCarrinho(widget.movel, 1));
+  }
+
 }

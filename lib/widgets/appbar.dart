@@ -3,15 +3,15 @@ import 'package:shopping_app_alura/widgets/botao_carrinho.dart';
 
 class AppBarCustomizada extends StatelessWidget with PreferredSizeWidget {
 
-final String titulo;
-final bool ehPaginaCarrinho;
+  final String titulo;
+  final bool ehPaginaCarrinho;
 
-AppBarCustomizada({this.titulo, this.ehPaginaCarrinho});
+  AppBarCustomizada({this.titulo, this.ehPaginaCarrinho});
 
-@override
+  @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-  
-@override
+
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(titulo, style: Theme.of(context).textTheme.headline),
