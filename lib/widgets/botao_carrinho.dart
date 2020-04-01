@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:shopping_app_alura/main.dart';
+import 'package:shopping_app_alura/modelos/item_carrinho.dart';
 
-import 'package:shopping_app_alura/modelos/carrinho.dart';
 
 class BotaoCarrinho extends StatelessWidget {
 
+  final List<ItemCarrinho> moveis;
   final BuildContext contexto;
 
-  BotaoCarrinho({this.contexto});
+  BotaoCarrinho({this.contexto, this.moveis});
   
   @override
   Widget build(BuildContext context) {
@@ -31,24 +32,24 @@ class BotaoCarrinho extends StatelessWidget {
              ),
            ),
            child: 
-             Consumer<CarrinhoModel>(
-               builder: (context, carrinho, child) {
-                 if (carrinho.tamanhoListaCarrinho > 0) {
-                   return Stack(
-                     alignment: Alignment.center,
-                       children: <Widget>[
-                         _construirImagemBotaoCarrinhoAppBar('utils/assets/icons/shopping_bag.png'), 
-                         _construirIndicatorBotaoCarrinhoAppBar(context)
-                       ]
-                   );
-                 }
-                 return _construirImagemBotaoCarrinhoAppBar('utils/assets/icons/shopping_bag.png');
-               }
+             _constroiBotao(context)
              )
            ),
-         )
-       );
+         );
      }
+
+  Widget _constroiBotao(BuildContext context) {
+    if(Inicio.itensCarrinho.length > 0){
+      return Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            _construirImagemBotaoCarrinhoAppBar('utils/assets/icons/shopping_bag.png'),
+            _construirIndicatorBotaoCarrinhoAppBar(context)
+          ]
+      );
+    }
+    return _construirImagemBotaoCarrinhoAppBar('utils/assets/icons/shopping_bag.png');
+  }
 
      _construirIndicatorBotaoCarrinhoAppBar(BuildContext contexto) {
        return Positioned(

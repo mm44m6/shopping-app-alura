@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:shopping_app_alura/widgets/card_detalhes.dart';
 import 'package:shopping_app_alura/widgets/appbar.dart';
 
-class Detalhes extends StatelessWidget {
+class Detalhes extends StatefulWidget {
   final movel;
+  final Function atualiza;
 
-  Detalhes({this.movel});
+  Detalhes({this.movel, this.atualiza});
+
+  _DetalhesState createState() => _DetalhesState();
+}
+
+class _DetalhesState extends State<Detalhes> {
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +24,7 @@ class Detalhes extends StatelessWidget {
       decoration: 
       BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("utils/assets/images/${movel.foto}"), fit: BoxFit.cover)
+          image: AssetImage("utils/assets/images/${widget.movel.foto}"), fit: BoxFit.cover)
         ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -27,10 +37,15 @@ class Detalhes extends StatelessWidget {
               height: 212,
               margin: EdgeInsets.all(16),
               child:  
-                CardDetalhes(contexto: context, movel: movel),
+                CardDetalhes(contexto: context, movel: widget.movel, atualizaPagina: atualiza),
             )
         )
       )
     );
   }
+
+  atualiza() {
+    setState(() {});
+  }
+
 }
